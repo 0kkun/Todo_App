@@ -34,4 +34,12 @@ class CreateFolder extends FormRequest
             'title' => 'required', // 必須入力を意味する required を指定
         ];
     }
+
+    
+    public function attributes()
+    {
+        return [
+            'title' => 'フォルダ名',
+        ];
+    }
 }
