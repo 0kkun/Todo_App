@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Folder;
 use Illuminate\Http\Request; // ユーザーの入力値をコントローラーで受け取る為、requestクラスをインポート
+use App\Http\Requests\CreateFolder; // バリデーションを有効にする為にインポート
 
 class FolderController extends Controller
 {
@@ -13,7 +14,7 @@ class FolderController extends Controller
     }
 
 
-    public function create(Request $request) // 引数にインポートしたRequestクラスを受け入れる
+    public function create(CreateFolder $request) // 引数にインポートしたRequestクラスを受け入れる。バリデーション有効になる。
     {
         // フォルダモデルのインスタンスを作成する
         $folder = new Folder();
