@@ -21,7 +21,9 @@ class TaskController extends Controller
         // getメソッドで構築されたSQLをデータベースに発行して結果を取得
         // SQLで下記の式をかくと、select * from `tasks` where `folder_id` = ?
         // 右記のように省略もできる。$tasks = Task::where('folder_id', $current_folder->id)->get();
-        $tasks = Task::where('folder_id', '=', $current_folder->id)->get();
+        // $tasks = Task::where('folder_id', '=', $current_folder->id)->get();
+        // 最終的に、モデルにリレーションを記述することで下記のように書ける
+        $tasks = $current_folder->tasks()->get();
  
 
         // view関数でテンプレートに取得したデータを渡す
