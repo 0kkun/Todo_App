@@ -68,8 +68,8 @@
                 <tr>
                   <td>{{ $task->title }}</td>
                   <td>
-                    <!-- status_labelはモデルでアクセサを使って定義している -->
-                    <span class="label">{{ $task->status_label }}</span>
+                    <!-- status_classとstatus_labelはモデルでアクセサを使って定義している -->
+                    <span class="label {{ $task->status_class }}">{{ $task->status_label }}</span>
                   </td>
                   <td>{{ $task->due_date }}</td>
                   <td><a href="#">編集</a></td>
