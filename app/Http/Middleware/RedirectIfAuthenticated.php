@@ -15,10 +15,11 @@ class RedirectIfAuthenticated
      * @param  string|null  $guard
      * @return mixed
      */
+    // 認証「されていない」ことを確かめるミドルウェアを編集
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            return redirect('/home');
+            return redirect('/');
         }
 
         return $next($request);
