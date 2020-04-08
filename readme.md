@@ -69,3 +69,14 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+## 開発環境
+
+### フレームワーク
+- Laravel Framework 5.7.28
+
+
+### データベース
+- MySQL 5.6
+- mysql  Ver 14.14 Distrib 5.6.46, for osx10.15 (x86_64) using  EditLine wrapper
