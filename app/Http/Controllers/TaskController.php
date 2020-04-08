@@ -7,6 +7,7 @@ use App\Task;   // モデルを読み込み
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateTask; // バリデーションを有効にする為にインポート
 use App\Http\Requests\EditTask;
+use Illuminate\Support\Facades\Auth; 
 
 class TaskController extends Controller
 {
