@@ -28,3 +28,6 @@ Route::post('/folders/{id}/tasks/{task_id}/edit', 'TaskController@edit');
 
 // ホーム画面
 Route::get('/', 'HomeController@index')->name('home');
+
+// この1行で会員登録・ログイン・ログアウト・パスワード再設定の各機能で必要なルーティング設定をすべて定義できる
+Auth::routes();
