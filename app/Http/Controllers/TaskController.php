@@ -69,6 +69,9 @@ class TaskController extends Controller
     // GET /folders/{id}/tasks/{task_id}/edit
     public function showEditForm(Folder $folder, Task $task)
     {
+
+        $this->checkRelation($folder, $task);
+
         $task = Task::find($task_id);
 
         return view('tasks/edit', [
@@ -79,6 +82,8 @@ class TaskController extends Controller
 
     public function edit(Folder $folder, Task $task, EditTask $request)
     {
+        $this->checkRelation($folder, $task);
+
         // 1 まずリクエストされた ID でタスクデータを取得します。これが編集対象
         $task = Task::find($task_id);
 
@@ -94,5 +99,13 @@ class TaskController extends Controller
         ]);
     }
 
-
+    // エラーハンドリング用のメソッド
+    // フォルダが存在してそのフォルダとログインユーザーが紐づいてさえいれば
+    // タスク ID が他者のものでも編集できてしまう。これを阻止するため
+    private function checkRelation(Folder $folder, Task $task)
+    {
+        if ($folder->id !== $task->folder_id) {
+            abort(404);
+        }
+    }
 }
