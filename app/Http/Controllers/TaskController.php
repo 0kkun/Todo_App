@@ -70,8 +70,6 @@ class TaskController extends Controller
 
         $this->checkRelation($folder, $task);
 
-        $task = Task::find($task_id);
-
         return view('tasks/edit', [
             'task' => $task,
         ]);
