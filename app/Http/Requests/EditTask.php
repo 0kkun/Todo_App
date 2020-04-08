@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Task;
-use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 // EditTask クラスは CreateTask クラスを継承
 // タスクの作成と編集では状態欄の有無が異なるだけでタイトルと期限日は同一なので重複を避けるために継承

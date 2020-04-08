@@ -6,6 +6,7 @@ use App\Folder; // モデルを読み込んで、データベースとやり取�
 use App\Task;   // モデルを読み込み
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateTask; // バリデーションを有効にする為にインポート
+use App\Http\Requests\EditTask;
 
 class TaskController extends Controller
 {
@@ -73,6 +74,7 @@ class TaskController extends Controller
             'task' => $task,
         ]);
     }
+    
 
     public function edit(int $id, int $task_id, EditTask $request)
     {
