@@ -42,14 +42,14 @@ class TaskController extends Controller
     // GET /folders/{id}/tasks/create
     // form要素のaction属性としてタスク作成
     // URL（/folders/{id}/tasks/create）を作るためにフォルダの ID が必要なので、コントローラーメソッドの引数で受け取って view 関数でテンプレートに渡す
-    public function showCreateForm(int $id)
+    public function showCreateForm(Folder $folder)
     {
         return view('tasks/create', [
-            'folder_id' => $id
+            'folder_id' => $folder->id,
         ]);
     }
 
-    public function create(int $id, CreateTask $request)
+    public function create(Folder $folder, CreateTask $request)
     {
         $current_folder = Folder::find($id);
     
@@ -58,16 +58,16 @@ class TaskController extends Controller
         $task->due_date = $request->due_date;
     
         // リレーションを活かしたデータの保存方法。$current_folderに紐づくタスクを作成
-        $current_folder->tasks()->save($task);
+        $folder->tasks()->save($task);
     
         return redirect()->route('tasks.index', [
-            'id' => $current_folder->id,
+            'id' => $folder->id,
         ]);
     }
 
 
     // GET /folders/{id}/tasks/{task_id}/edit
-    public function showEditForm(int $id, int $task_id)
+    public function showEditForm(Folder $folder, Task $task)
     {
         $task = Task::find($task_id);
 
@@ -77,7 +77,7 @@ class TaskController extends Controller
     }
     
 
-    public function edit(int $id, int $task_id, EditTask $request)
+    public function edit(Folder $folder, Task $task, EditTask $request)
     {
         // 1 まずリクエストされた ID でタスクデータを取得します。これが編集対象
         $task = Task::find($task_id);
