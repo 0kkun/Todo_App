@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Folder; // モデルを読み込んで、データベースとやり取りできるようになる
 use App\Task;   // モデルを読み込み
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateTask; // バリデーションを有効にする為にインポート
 
 class TaskController extends Controller
 {
@@ -46,6 +47,20 @@ class TaskController extends Controller
         ]);
     }
 
-
+    public function create(int $id, CreateTask $request)
+    {
+        $current_folder = Folder::find($id);
+    
+        $task = new Task();
+        $task->title = $request->title;
+        $task->due_date = $request->due_date;
+    
+        // リレーションを活かしたデータの保存方法。$current_folderに紐づくタスクを作成
+        $current_folder->tasks()->save($task);
+    
+        return redirect()->route('tasks.index', [
+            'id' => $current_folder->id,
+        ]);
+    }
 
 }
