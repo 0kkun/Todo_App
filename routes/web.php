@@ -13,8 +13,8 @@
 
 // ログイン認証を求める機能をミドルウェアを用いる
 Route::group(['middleware' => 'auth'], function() {
-  // フォルダ一覧表示
-  Route::get('/folders/{id}/tasks', 'TaskController@index')->name('tasks.index');
+  // フォルダ一覧表示。本来{id}になっているところが{folder}になっているのはルートモデルバインディング化のため。
+  Route::get('/folders/{folder}/tasks', 'TaskController@index')->name('tasks.index');
 
   // フォルダ作成 (フォルダ作成ページ表示と、フォルダ作成処理のルーティング)
   Route::get('/folders/create', 'FolderController@showCreateForm')->name('folders.create'); //同じ URL で HTTP メソッド違いのルートがいくつかある場合はどれか一つに名前をつければ OK 
