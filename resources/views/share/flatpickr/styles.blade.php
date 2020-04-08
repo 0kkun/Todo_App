@@ -1,0 +1,2 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"> <!-- flatpickrを使用するためのファイル（デフォルトのスタイルシート ）-->
+<link rel="stylesheet" href="https://npmcdn.com/flatpickr/dist/themes/material_blue.css"> <!-- flatpickrを使用するためのファイル（ブルーテーマの追加スタイルシート）-->
