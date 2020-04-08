@@ -74,4 +74,22 @@ class TaskController extends Controller
         ]);
     }
 
+    public function edit(int $id, int $task_id, EditTask $request)
+    {
+        // 1 まずリクエストされた ID でタスクデータを取得します。これが編集対象
+        $task = Task::find($task_id);
+
+        // 2 編集対象のタスクデータに入力値を詰めて save
+        $task->title = $request->title;
+        $task->status = $request->status;
+        $task->due_date = $request->due_date;
+        $task->save();
+
+        // 3 最後に編集対象のタスクが属するタスク一覧画面へリダイレクト
+        return redirect()->route('tasks.index', [
+            'id' => $task->folder_id,
+        ]);
+    }
+
+
 }
