@@ -60,7 +60,16 @@
                   <td>{{ $task->title }}</td>
                   <td>
                     <!-- status_classとstatus_labelはモデルでアクセサを使って定義している -->
-                    <span class="label {{ $task->status_class }}">{{ $task->status_label }}</span>
+                    <?php
+                    switch ($task->status) {
+                      case 1: $label = "未着手"; break;
+                      case 2: $label = "着手中"; break;
+                      case 3: $label = "完了"; break;
+                      default: $label = "";
+                    }
+                    ?>
+                    <span class="label {{ $task->status_label }}">{{ $label }}</span>
+                    <!-- <span class="label {{ $task->status_class }}">{{ $task->status_label }}</span> -->
                   </td>
                   <td>{{ $task->formatted_due_date }}</td>
                   <td><a href="#">編集</a></td>
