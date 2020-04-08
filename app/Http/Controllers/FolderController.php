@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Folder;
 use Illuminate\Http\Request; // ユーザーの入力値をコントローラーで受け取る為、requestクラスをインポート
 use App\Http\Requests\CreateFolder; // バリデーションを有効にする為にインポート
+use Illuminate\Support\Facades\Auth; 
 
 class FolderController extends Controller
 {
@@ -21,7 +22,8 @@ class FolderController extends Controller
         // タイトルに入力値を代入する
         $folder->title = $request->title;
         // インスタンスの状態をデータベースに書き込む (永続化)
-        $folder->save();
+        // ユーザーに紐づいてフォルダが保存される
+        Auth::user()->folders()->save($folder);
 
         return redirect()->route('tasks.index', [
             'id' => $folder->id,
