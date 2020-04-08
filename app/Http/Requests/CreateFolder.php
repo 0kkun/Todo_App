@@ -32,10 +32,11 @@ class CreateFolder extends FormRequest
     {
         return [
             'title' => 'required', // 必須入力を意味する required を指定
+            'title' => 'required|max:20',
         ];
     }
 
-    
+
     public function attributes()
     {
         return [
