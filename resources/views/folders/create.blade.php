@@ -39,7 +39,8 @@
                 @csrf
                 <div class="form-group">
                   <label for="title">フォルダ名</label>
-                  <input type="text" class="form-control" name="title" id="title" />
+                  <!-- value属性の値にoldを使用。入力値はセッションに一時的に保存されている。old関数はそのセッション値を取得。引数はname属性 -->
+                  <input type="text" class="form-control" name="title" id="title" value="{{ old('title') }}" />
                 </div>
                 <div class="text-right">
                   <button type="submit" class="btn btn-primary">送信</button>
