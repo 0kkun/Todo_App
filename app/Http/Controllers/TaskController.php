@@ -80,9 +80,6 @@ class TaskController extends Controller
     {
         $this->checkRelation($folder, $task);
 
-        // 1 まずリクエストされた ID でタスクデータを取得します。これが編集対象
-        $task = Task::find($task_id);
-
         // 2 編集対象のタスクデータに入力値を詰めて save
         $task->title = $request->title;
         $task->status = $request->status;
