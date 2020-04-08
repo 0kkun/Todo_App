@@ -12,8 +12,8 @@ class TaskController extends Controller
 {
     public function index(int $id) // ビューからリクエスト時の値(URL)を受け取る時は()にいれる
     {
-        // すべてのフォルダを取得する
-        $folders = Folder::all();
+        // ★ ユーザーのフォルダを取得する
+        $folders = Auth::user()->folders()->get();
     
         // 選ばれたフォルダを取得する
         $current_folder = Folder::find($id);
