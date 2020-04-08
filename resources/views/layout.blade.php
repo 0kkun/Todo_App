@@ -14,7 +14,9 @@
   <nav class="my-navbar">
     <a class="my-navbar-brand" href="/">ToDo App</a>
     <div class="my-navbar-control">
+      <!-- Auth クラスの check メソッドでログインしているかどうかを確認することができる -->
       @if(Auth::check())
+        <!-- Auth::user でログイン中のユーザーを取得できる。 -->
         <span class="my-navbar-item">ようこそ, {{ Auth::user()->name }}さん</span>
         ｜
         <a href="#" id="logout" class="my-navbar-item">ログアウト</a>
@@ -32,6 +34,18 @@
 <main>
   @yield('content')
 </main>
+
+<!-- ログアウト機能として必要なのは route（'logout'） の URL に POST リクエストを送信すること -->
+@if(Auth::check())
+  <script>
+    // ログアウトリンクのクリックイベントで、リンクの下に置いたフォームを送信
+    document.getElementById('logout').addEventListener('click', function(event) {
+      event.preventDefault();
+      document.getElementById('logout-form').submit();
+    });
+  </script>
+@endif
+
 @yield('scripts')
 </body>
 </html>
